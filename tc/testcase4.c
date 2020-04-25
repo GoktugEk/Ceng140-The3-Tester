@@ -23,7 +23,7 @@ int main()
 
 
 
-    calculate_dot_product(matrix, row_size, 1, 1);
+    calculate_dot_product(matrix, row_size, 0, 0);
     printf("\n\n"); 
 
     result = calculate_x_transpose_times_x(matrix, row_count, row_size);
