@@ -32,7 +32,7 @@ for i in range(1,NUM_OF_TESTCASE+1):
 		print("\nYour Output:\n"+out)
 		wrong_tcs.append("Testcase"+str(i))
 		wrong+=1
-0
+
 print("You failed " + str(wrong) + " times on "+str(NUM_OF_TESTCASE)+" testcases.")
 print("You failed on the cases: {}".format(wrong_tcs))
 t2 = time.time()
