@@ -1,7 +1,7 @@
 import os
 import time
 
-NUM_OF_TESTCASE = 6
+NUM_OF_TESTCASE = 5
 wrong = 0
 wrong_tcs = []
 t1 = time.time()
