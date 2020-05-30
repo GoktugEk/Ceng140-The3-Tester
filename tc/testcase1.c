@@ -1,73 +1,50 @@
 #include <stdio.h>
-#include "../the2.h"
-#include<stdlib.h>
-
-int main()
-{
-    double **matrix, **result, **covariance_matrix, **group_matrix, **kernel, **convoluted;
-    int i,row_size = 0, row_count = 0, kernel_height = 3, kernel_width = 3,group_count;
-
-    matrix = initialize_the_data(&row_count, &row_size);
-
-    kernel = (double**)malloc(3*sizeof(double));
+#include <stdlib.h>
+#include "../the3.h"
+int main(){
+    Node *meals = NULL;
+    Node *philosophers = NULL;
+    Node *table = NULL;
+    add_meal(&meals, "Banana Leaf Rice", 58);
+    add_meal(&meals, "Corn Bread", 44);
+    add_meal(&meals, "Borscht", 44);
+    add_meal(&meals, "Sunday Roast", 44);
+    add_meal(&meals, "Poutine",44);
+    add_meal(&meals, "Kumpir", 44);
+    add_meal(&meals, "Kung Pao", 44);
+    add_meal(&meals, "Tofu", 44);
+    add_meal(&meals, "Wonton", 44);
+    add_meal(&meals, "Fried Rice", 44);
+    add_philosopher(&philosophers, "Lao Tzu", "Banana Leaf Rice", 1424);
+    add_philosopher(&philosophers, "Confucius", "Banana Leaf Rice", 1145);
+    add_philosopher(&philosophers, "Mozi", "Banana Leaf Rice", 1976);
+    add_philosopher(&philosophers, "Shang Yang", "Banana Leaf Rice", 1555);
+    add_philosopher(&philosophers, "Darwin", "Banana Leaf Rice", 211);
+    add_philosopher(&philosophers, "De Moragan", "Banana Leaf Rice", 214);
+    add_philosopher(&philosophers, "Descates", "Banana Leaf Rice", 424);
+    add_philosopher(&philosophers, "Erasmus", "Banana Leaf Rice", 554);
+    add_philosopher(&philosophers, "Faraday", "Banana Leaf Rice", 229);
+    add_philosopher(&philosophers, "Gaius", "Banana Leaf Rice", 1910);
+    add_philosopher(&philosophers, "Gorgias", "Banana Leaf Rice", 2503);
+    add_philosopher(&philosophers, "Hess", "Banana Leaf Rice", 208);
+    add_philosopher(&philosophers, "Huxley", "Banana Leaf Rice", 195);
+    add_philosopher(&philosophers, "Damascius", "Banana Leaf Rice", 1558);
+   
+    print_list(meals, &print_meal_node);
+    printf("----------------------------\n\n");
+    print_list(philosophers, &print_philosopher_node);
+   
+    place_philosophers(&table, philosophers);
+    printf("----------------------------\n\n");
+    print_table(table);
     
-    for(i=0;i<3;i++){
-        kernel[i] = malloc(3*sizeof(double));
-    }
-    kernel[0][0] = 1;
-    kernel[0][1] = 0;
-    kernel[0][2] = 1;
-    kernel[1][0] = 0;
-    kernel[1][1] = 1;
-    kernel[1][2] = 0;
-    kernel[2][0] = 1;
-    kernel[2][1] = 0;
-    kernel[2][2] = 1;
-
-
-
-    print_first_n_row(matrix, row_count, row_size);
-    printf("\n\n");
-    print_first_n_row(matrix, 1, row_size);
-    printf("\n\n");
-
-
-
-    calculate_dot_product(matrix, row_size, 1, 3);
-    printf("\n"); 
-    calculate_dot_product(matrix, row_size, 1, 1);
-    printf("\n\n"); 
-
-    result = calculate_x_transpose_times_x(matrix, row_count, row_size);
-    print_first_n_row(result, row_size, row_size);
-    printf("\n\n");
-
-    covariance_matrix = calculate_covariance_matrix(matrix, row_count, row_size);
-    print_first_n_row(covariance_matrix, row_size, row_size);
-    printf("\n\n");
-
-    group_matrix = group_by(matrix, &group_count, row_count, row_size, 2, 0);
-    print_first_n_row(group_matrix, group_count, row_size);
-    printf("\n\n");
-
-    group_matrix = group_by(matrix, &group_count, row_count, row_size, 2, 1);
-    print_first_n_row(group_matrix, group_count, row_size);
-    printf("\n\n");
-
-    group_matrix = group_by(matrix, &group_count, row_count, row_size, 5, 2);
-    print_first_n_row(group_matrix, group_count, row_size);   
-    printf("\n\n");
-
-    group_matrix = group_by(matrix, &group_count, row_count, row_size, 5, 3);
-    print_first_n_row(group_matrix, group_count, row_size); 
-    printf("\n\n");
-
-    convoluted = convolution(matrix, row_count, row_size, kernel, kernel_height, kernel_width);
-    print_first_n_row(convoluted, row_count - kernel_height + 1, row_size - kernel_width + 1);
-    printf("\n\n");
-
-    convoluted = convolution(matrix, row_count, row_size, kernel, kernel_height, kernel_width);
-    print_first_n_row(convoluted, row_count - kernel_height + 1, row_size - kernel_width + 1);
+    serve_meals(table, meals);
+    printf("----------------------------\n\n");
+    print_list(meals, &print_meal_node);
     
+	remove_philosopher(&table, 13, 14);
+    printf("----------------------------\n\n");
+    print_table(table);    
+
     return 0;
 }

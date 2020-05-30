@@ -8,17 +8,16 @@ t1 = time.time()
 
 for i in range(1,NUM_OF_TESTCASE+1):
 	tc = "tc/testcase"+str(i)+".c"
-	inp = "in/input"+str(i)+".txt"
 	outp = "out/output"+str(i)+".txt"
 	expe = "exp/expected"+str(i)+".txt"
 
-	# os.system("gcc -c the2.c")
+	# os.system("gcc -c the3.c")
 	# os.system("gcc -c " + tc)
 	# os.system("gcc the2.o testcase"+str(i)+".o -o a")
 	
-	os.system("gcc -ansi -Wall -pedantic-errors the2.c tc/testcase"+str(i)+".c -lm -o a")
+	os.system("gcc -ansi -Wall -pedantic-errors the3.c tc/testcase"+str(i)+".c -lm -o a")
 
-	os.system("./a <"+inp+" >"+outp)
+	os.system("./a  >"+outp)
 
 	output = open(outp,"r+")
 	out = output.read()
