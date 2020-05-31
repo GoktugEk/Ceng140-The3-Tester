@@ -46,7 +46,7 @@ int main(){
     printf("----------------------------\n\n");
     print_table(table); 
 	   
-	remove_philosopher(&table, 5, 12);
+	remove_philosopher(&table, 5, 13);
     printf("----------------------------\n");
     print_table(table); 
     
