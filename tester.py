@@ -7,7 +7,8 @@ wrong_tcs = []
 bar = 30
 t1 = time.time()
 
-print(bar * '.',end = '\r')
+print(bar * '.',end = '')
+print("0%",end = '\r')
 
 for i in range(1,NUM_OF_TESTCASE+1):
 	time.sleep(0.5)
@@ -32,12 +33,17 @@ for i in range(1,NUM_OF_TESTCASE+1):
 		print("\nYour Output:\n"+out)
 		wrong_tcs.append("Testcase"+str(i))
 		wrong+=1
-	
-	progress = int((i/NUM_OF_TESTCASE)*bar)
-	print(progress*'#',end='')
-	print((30-progress)*'.',end = '\r')
 
-print("You failed " + str(wrong) + " times on "+str(NUM_OF_TESTCASE)+" testcases.")
+
+
+	progress = int((i/NUM_OF_TESTCASE)*bar)
+	percantage = round((progress*100)/bar,1)
+	print(progress*'#',end='')
+	print((30-progress)*'.',end = '')
+	print(str(percantage)+ "%",end='\r')
+
+print("\nYou failed " + str(wrong) + " times on "+str(NUM_OF_TESTCASE)+" testcases.")
 print("You failed on the cases: {}".format(wrong_tcs))
 t2 = time.time()
+t2 -= 3
 print("Execute time is: {}".format(t2-t1))
