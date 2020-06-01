@@ -4,16 +4,17 @@ import time
 NUM_OF_TESTCASE = 6
 wrong = 0
 wrong_tcs = []
+bar = 30
 t1 = time.time()
 
+print(bar * '.',end = '\r')
+
 for i in range(1,NUM_OF_TESTCASE+1):
+	time.sleep(0.5)
 	tc = "tc/testcase"+str(i)+".c"
 	outp = "out/output"+str(i)+".txt"
 	expe = "exp/expected"+str(i)+".txt"
 
-	# os.system("gcc -c the3.c")
-	# os.system("gcc -c " + tc)
-	# os.system("gcc the2.o testcase"+str(i)+".o -o a")
 	
 	os.system("gcc -ansi -Wall -pedantic-errors the3.c tc/testcase"+str(i)+".c -lm -o a")
 
@@ -31,6 +32,10 @@ for i in range(1,NUM_OF_TESTCASE+1):
 		print("\nYour Output:\n"+out)
 		wrong_tcs.append("Testcase"+str(i))
 		wrong+=1
+	
+	progress = int((i/NUM_OF_TESTCASE)*bar)
+	print(progress*'#',end='')
+	print((30-progress)*'.',end = '\r')
 
 print("You failed " + str(wrong) + " times on "+str(NUM_OF_TESTCASE)+" testcases.")
 print("You failed on the cases: {}".format(wrong_tcs))
